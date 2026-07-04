@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Part 1 · Learn Web Development with AI · Be10X</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14;--surface:#13131f;--surface-2:#1c1c2e;
+  --text:#f5f5fa;--muted:#9ca3b7;--line:#2a2a40;
+  --primary:#a78bfa;--primary-2:#6366f1;--accent:#f472b6;--success:#34d399;
+  --code-bg:#0a0a13;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+code,pre{font-family:'JetBrains Mono',monospace}
+
+/* Deck */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide{position:absolute;inset:0;padding:64px 88px;display:flex;flex-direction:column;justify-content:center;opacity:0;transform:translateY(20px);transition:opacity .45s ease,transform .45s ease;pointer-events:none;overflow-y:auto}
+.slide.active{opacity:1;transform:none;pointer-events:auto}
+.slide::before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 600px at 80% -10%,rgba(167,139,250,.18),transparent 60%),radial-gradient(900px 500px at -10% 110%,rgba(244,114,182,.12),transparent 60%);pointer-events:none;z-index:-1}
+
+/* Chrome */
+.brand{position:fixed;top:24px;left:32px;display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.04em;font-size:13px;color:var(--muted);z-index:10}
+.brand .dot{width:24px;height:24px;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:13px;font-weight:800}
+.counter{position:fixed;bottom:20px;right:28px;font-size:12px;color:var(--muted);letter-spacing:.08em;z-index:10}
+.nav-btns{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.nav-btns button{background:var(--surface);color:var(--text);border:1px solid var(--line);padding:8px 14px;border-radius:999px;cursor:pointer;font:600 12px Inter;letter-spacing:.04em}
+.nav-btns button:hover{background:var(--surface-2);border-color:var(--primary)}
+.progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--accent));z-index:10;transition:width .35s ease}
+
+/* Typography */
+.eyebrow{font:600 12px/1 'Inter';letter-spacing:.32em;text-transform:uppercase;color:var(--primary);margin-bottom:18px}
+.kicker{font:700 14px/1.4 'Inter';letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1.big{font-size:clamp(48px,7vw,96px);background:linear-gradient(135deg,#fff 0%,#a78bfa 60%,#f472b6 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2.title{font-size:clamp(36px,4.5vw,60px);margin-bottom:18px}
+h3.section{font-size:28px;margin:0 0 12px;color:#fff}
+p.lead{font-size:20px;color:var(--muted);max-width:860px;line-height:1.55}
+p.body{font-size:17px;color:#cfd0e0;line-height:1.6;max-width:920px}
+.small{font-size:13px;color:var(--muted)}
+
+/* Cards & grids */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-3px);border-color:var(--primary)}
+.card h4{font:700 16px Inter;margin-bottom:6px;color:#fff}
+.card p{font-size:14px;color:var(--muted);line-height:1.55}
+.icon{font-size:28px;margin-bottom:10px;display:block}
+
+/* Code */
+pre.code{background:var(--code-bg);border:1px solid var(--line);border-radius:14px;padding:20px 22px;font-size:13.5px;line-height:1.65;color:#e6e6f3;overflow:auto;max-height:62vh;position:relative}
+pre.code .tag{position:absolute;top:10px;right:12px;font:600 10px 'Inter';letter-spacing:.16em;color:var(--primary);background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);padding:4px 8px;border-radius:6px;text-transform:uppercase}
+.pill{display:inline-block;font:600 11px Inter;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);padding:5px 10px;border-radius:999px;margin-right:6px}
+.kbd{font:600 12px 'JetBrains Mono';background:#000;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:3px 8px;color:#fff}
+
+/* Strategy callout */
+.strategy{margin-top:18px;padding:16px 18px;border-radius:12px;background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(244,114,182,.06));border:1px solid rgba(167,139,250,.25)}
+.strategy h5{font:700 11px Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.strategy ul{list-style:none;display:grid;gap:6px}
+.strategy li{font-size:14px;color:#dcdcec;padding-left:22px;position:relative}
+.strategy li::before{content:"▸";position:absolute;left:0;color:var(--primary)}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14.5px}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 12px Inter;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:12.5px;color:var(--primary)}
+
+/* QA slide */
+.qa{display:grid;place-items:center;text-align:center;gap:18px}
+.qa .ring{width:140px;height:140px;border-radius:50%;border:3px dashed var(--primary);display:grid;place-items:center;font:800 60px Fraunces;color:var(--primary);background:rgba(167,139,250,.05)}
+
+/* Section divider slide */
+.divider{display:grid;place-items:center;text-align:center}
+.divider h1{font-size:clamp(64px,9vw,140px)}
+
+/* Two-column */
+.two{display:grid;grid-template-columns:1.05fr 1fr;gap:36px;align-items:start}
+.bullets{list-style:none;display:grid;gap:12px;margin-top:14px}
+.bullets li{padding-left:28px;position:relative;font-size:16px;color:#dcdcec;line-height:1.55}
+.bullets li::before{content:"✓";position:absolute;left:0;color:var(--success);font-weight:700}
+
+/* Hero analogy figure */
+.body-analogy{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.body-analogy .card{text-align:center}
+.body-analogy .icon{font-size:48px}
+
+footer.note{position:absolute;bottom:14px;left:88px;font-size:12px;color:var(--muted);letter-spacing:.04em}
+
+/* scroll bar styling */
+.slide::-webkit-scrollbar,pre.code::-webkit-scrollbar{width:8px;height:8px}
+.slide::-webkit-scrollbar-thumb,pre.code::-webkit-scrollbar-thumb{background:#2a2a40;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="brand"><span class="dot">b</span><span>BE10X · WEB DEV WITH AI · PART 1</span></div>
+<div class="counter"><span id="cur">1</span> / <span id="total">1</span></div>
+<div class="nav-btns">
+  <button onclick="prev()">◀ Prev</button>
+  <button onclick="next()">Next ▶</button>
+</div>
+
+<div class="deck" id="deck">
+
+<!-- 1: TITLE -->
+<section class="slide divider">
+  <div class="eyebrow">Part 1 · 3 hours · Live in Cursor</div>
+  <h1 class="big">Learn Web<br/>Development<br/>with AI</h1>
+  <p class="lead" style="margin-top:24px;text-align:center">Build a real, multi-page UX Designer portfolio — from blank folder to responsive site — using nothing but well-written prompts.</p>
+  <div style="margin-top:30px"><span class="pill">Cursor IDE</span><span class="pill">HTML · CSS · JS</span><span class="pill">Prompt Engineering</span></div>
+</section>
+
+<!-- 2: Why -->
+<section class="slide">
+  <div class="eyebrow">Why this matters</div>
+  <h2 class="title">The skill that just got rewritten.</h2>
+  <p class="lead">Five years ago this site needed two weeks of tutorials. Today it needs three hours of clear instructions. The new bottleneck isn't typing — it's <em>describing what you want</em> with enough precision that a model can build it.</p>
+  <div class="grid g3" style="margin-top:30px">
+    <div class="card"><span class="icon">🧱</span><h4>Build like a developer</h4><p>Multi-file projects, real architecture, no toy snippets.</p></div>
+    <div class="card"><span class="icon">🗣️</span><h4>Think like a designer</h4><p>Describe layouts, behaviour and feel — in numbers, not adjectives.</p></div>
+    <div class="card"><span class="icon">🚀</span><h4>Ship like a team</h4><p>A live, responsive site by the end of Part 1. Backend & deploy in Part 2.</p></div>
+  </div>
+</section>
+
+<!-- 3: Triad -->
+<section class="slide">
+  <div class="eyebrow">Module 0 · Concept</div>
+  <h2 class="title">The Core Triad of the Web.</h2>
+  <p class="lead">Every website on Earth is built from these three languages. Hold this analogy in your head — we'll reuse it all day.</p>
+  <div class="body-analogy">
+    <div class="card"><span class="icon">🦴</span><h4>HTML — Skeleton</h4><p>Structure & content. The bones of the page.</p></div>
+    <div class="card"><span class="icon">🎨</span><h4>CSS — Skin & Muscles</h4><p>How it looks, feels and lays itself out.</p></div>
+    <div class="card"><span class="icon">🧠</span><h4>JavaScript — Brain</h4><p>Behaviour. What happens when users do things.</p></div>
+  </div>
+</section>
+
+<!-- 4: Cursor vs VS Code -->
+<section class="slide">
+  <div class="eyebrow">Module 0 · Tooling</div>
+  <h2 class="title">Cursor — VS Code's AI-native twin.</h2>
+  <div class="two" style="margin-top:18px">
+    <div>
+      <ul class="bullets">
+        <li>Same editor you know — with a built-in pair-programmer.</li>
+        <li>Reads <strong>your whole project</strong>, edits multiple files in one shot.</li>
+        <li>Free tier has monthly token limits. We'll <em>consolidate</em> prompts to respect them.</li>
+        <li>Fallback: open the same folder in VS Code + Copilot, zero work lost.</li>
+      </ul>
+    </div>
+    <pre class="code"><span class="tag">setup</span>1. Download Cursor → cursor.com
+2. Sign in (Google works)
+3. File → Open Folder
+   → create  "aanya-portfolio"
+4. Press  Cmd/Ctrl + L  → chat opens
+5. Toggle <strong>Agent</strong> mode (top of chat)
+6. You're ready.</pre>
+  </div>
+</section>
+
+<!-- 5: The Five Rules -->
+<section class="slide">
+  <div class="eyebrow">Module 1 · The whole course in 5 bullets</div>
+  <h2 class="title">The Five Rules of Prompting.</h2>
+  <table>
+    <thead><tr><th>#</th><th>Rule</th><th>❌ Vague</th><th>✅ Strong</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Numbers beat adjectives</strong></td><td>"make it look nice"</td><td>"white bg, 12px radius, subtle drop shadow"</td></tr>
+      <tr><td>2</td><td><strong>Persona before prompt</strong></td><td>"I'm a designer"</td><td>"UX designer, 5 yrs in fintech apps"</td></tr>
+      <tr><td>3</td><td><strong>Consolidate</strong></td><td>6 small prompts</td><td>1 prompt, 6 bullets</td></tr>
+      <tr><td>4</td><td><strong>Iterate: anchor + delta</strong></td><td>"redo it"</td><td>"font on mobile is too small → 16px"</td></tr>
+      <tr><td>5</td><td><strong>Demand the "why"</strong></td><td>silence</td><td>"explain each section in plain English"</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 6: QA1 -->
+<section class="slide"><div class="qa"><div class="ring">?</div><h2 class="title" style="margin:0">Q&amp;A · Break 1</h2><p class="lead">Unclear on HTML vs CSS vs JS? Now's the time.</p></div></section>
+
+<!-- 7: Module 2 -->
+<section class="slide divider"><div><div class="kicker">Module 2</div><h1 class="big" style="font-size:clamp(56px,8vw,120px)">Project<br/>Initialisation</h1></div></section>
+
+<!-- 8: Prompt 1 -->
+<section class="slide">
+  <div class="eyebrow">Prompt 1 · Scaffold</div>
+  <h2 class="title">Three files, one chat message.</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">paste into Cursor</span>You are pair-programming with a complete beginner.
+
+Create a starter web project in the current folder with these three files:
+1. index.html  – HTML5 boilerplate titled "Aanya Sharma | UX Designer"
+2. styles.css  – empty stylesheet
+3. script.js   – console.log("Portfolio loaded ✅")
+
+Inside index.html, link styles.css in the &lt;head&gt; and
+script.js just before &lt;/body&gt;.
+
+After creating the files, explain in plain English what
+each file does and why we link them in those places.</pre>
+    <div class="strategy">
+      <h5>Why this prompt works</h5>
+      <ul>
+        <li>Persona for the AI ("beginner") forces simpler output.</li>
+        <li>Numbered deliverables → no ambiguity.</li>
+        <li>Exact placement of <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> teaches <em>through</em> the prompt.</li>
+        <li>"Explain in plain English" — Rule #5 in action.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 9: Module 3 -->
+<section class="slide divider"><div><div class="kicker">Module 3</div><h1 class="big" style="font-size:clamp(56px,8vw,120px)">Sticky<br/>Navigation</h1></div></section>
+
+<!-- 10: Prompt 2 -->
+<section class="slide">
+  <div class="eyebrow">Prompt 2 · Navigation bar</div>
+  <h2 class="title">Eight requirements, one message.</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">prompt 2</span>In index.html, add a sticky nav at the top of &lt;body&gt;.
+
+Requirements:
+- Brand left: "Aanya Sharma"
+- 4 links right, evenly spaced:
+  Home, About, Projects, Contact
+- Links → index.html, about.html,
+         projects.html, contact.html
+- Dark bg #111827, white text, 16px, 64px tall
+- Sticky position
+- Hover: text → #a78bfa, 0.2s transition
+- Current page link has .active → purple underline
+
+Put styles under /* === NAVIGATION === */ in styles.css
+Add HTML comments above the nav explaining each part.</pre>
+    <div class="strategy">
+      <h5>Strategy unpacked</h5>
+      <ul>
+        <li>Exact hex codes, exact px values (Rule 1).</li>
+        <li>Eight specs in one prompt (Rule 3 — consolidation).</li>
+        <li>Future-proofing: <code>.active</code> class declared <em>before</em> other pages exist.</li>
+        <li>Stylesheet hygiene from message #2: section headers.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 11: Module 4 -->
+<section class="slide divider"><div><div class="kicker">Module 4</div><h1 class="big" style="font-size:clamp(56px,8vw,120px)">The Hero<br/>Section</h1></div></section>
+
+<!-- 12: Prompt 3 -->
+<section class="slide">
+  <div class="eyebrow">Prompt 3 · Hero</div>
+  <h2 class="title">Above-the-fold, fully specified.</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">prompt 3</span>Below the nav in index.html, add a hero section.
+
+Layout: full width, 80vh tall, centred content
+Background: linear-gradient #4f46e5 → #9333ea (TL→BR)
+White text, centred both axes
+
+Content (in order):
+1. Eyebrow "PORTFOLIO 2026" — 14px, uppercase,
+   letter-spacing 4px, 60% opacity
+2. h1 "I design products people actually enjoy using."
+   56px, bold, max-width 800px
+3. p sub "Senior UX Designer with 5 yrs in fintech,
+   edtech and healthcare." — 20px, 80% opacity
+4. CTA button "See My Work →" → projects.html
+   white bg, #111827 text, 16/32 padding, 999px radius
+   subtle shadow, lift 4px on hover (0.2s)
+
+Style under /* === HERO === */
+Briefly explain why a Hero matters for first-time visitors.</pre>
+    <div class="strategy">
+      <h5>What we did</h5>
+      <ul>
+        <li>Visual hierarchy spelled out as a numbered list.</li>
+        <li>Gradient <strong>direction</strong> stated — no guesswork.</li>
+        <li>Every interactive state (hover, lift) specified up-front.</li>
+        <li>"Why a Hero matters" — converts a build into a lesson.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 13: Iteration -->
+<section class="slide">
+  <div class="eyebrow">Prompt 4 · Iteration pattern</div>
+  <h2 class="title">Anchor + delta + "don't touch anything else".</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">prompt 4 — refinement</span>Two refinements to the hero:
+
+1. The headline feels too big on a 13" laptop.
+   Reduce h1 to 48px and add a media query
+   so it becomes 36px below 640px.
+
+2. Add a subtle floating animation to the CTA —
+   move up 3px and back over 2s, loop infinitely,
+   CSS @keyframes.
+
+<strong>Do not touch anything else.</strong></pre>
+    <div class="strategy">
+      <h5>The single most useful pattern in this course</h5>
+      <ul>
+        <li><strong>Anchor</strong> the problem in user words.</li>
+        <li><strong>Delta</strong> with exact numbers.</li>
+        <li><strong>Lock the scope</strong> — "do not touch anything else" prevents the AI from "improving" other things.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 14: QA2 -->
+<section class="slide"><div class="qa"><div class="ring">?</div><h2 class="title" style="margin:0">Q&amp;A · Break 2</h2><p class="lead">Spot the pattern in our prompts so far. (Hint: numbers, no fluff, one big message.)</p></div></section>
+
+<!-- 15: Module 6 Skills -->
+<section class="slide">
+  <div class="eyebrow">Module 6 · Skills</div>
+  <h2 class="title">CSS Grid the right way — once.</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">prompt 5 (excerpt)</span>Responsive CSS grid:
+auto-fit, minmax(260px, 1fr), 24px gap
+
+6 cards, each:
+  - 48px emoji icon
+  - h3 skill name (20px, semibold)
+  - 14px description (#6b7280)
+Card: white bg, 16px radius, 24px pad,
+      1px #e5e7eb border, subtle shadow
+Hover: lift 6px, deeper shadow, 0.2s
+
+Skill content (provided inline):
+🎨 User Research – …
+🖌️ UI Design – …
+🧭 IA – …
+📐 Prototyping – …
+♿ Accessibility – …
+📊 Design Systems – …</pre>
+    <div class="strategy">
+      <h5>Two senior moves</h5>
+      <ul>
+        <li>Content <em>provided inline</em> — never let the AI invent your résumé.</li>
+        <li><code>auto-fit, minmax()</code> = responsive for free, no media queries.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 16: Module 7 -->
+<section class="slide">
+  <div class="eyebrow">Module 7 · Multi-page reuse</div>
+  <h2 class="title">"Reuse the EXACT same nav."</h2>
+  <p class="lead">A six-word phrase that saves you from inconsistent navigation across pages. Cursor will copy verbatim instead of re-imagining.</p>
+  <div class="grid g3" style="margin-top:28px">
+    <div class="card"><span class="icon">🪞</span><h4>about.html</h4><p>Two-column bio + vertical timeline with 4 career milestones.</p></div>
+    <div class="card"><span class="icon">🗂️</span><h4>projects.html</h4><p>Grid of 6 cards · placeholder images · tag pills · "View Case Study →"</p></div>
+    <div class="card"><span class="icon">✉️</span><h4>contact.html</h4><p>Form: name, email, subject (dropdown), message — focus states + JS success.</p></div>
+  </div>
+  <p class="body" style="margin-top:22px">All three pages link the <em>same</em> <code>styles.css</code> and <code>script.js</code> — change once, apply everywhere.</p>
+</section>
+
+<!-- 17: Contact bridge -->
+<section class="slide">
+  <div class="eyebrow">Prompt 8 · The Part 2 bridge</div>
+  <h2 class="title">A form that looks real today, becomes real tomorrow.</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">prompt 8 (excerpt)</span>JavaScript behaviour (append to script.js):
+
+- preventDefault on submit
+- validate all required fields
+- hide the form
+- show green success:
+  "✅ Thanks! Your message was sent.
+   I'll reply within 24 hours."
+- console.log the form data as an object
+
+<em>(we'll send it to a real database in Part 2)</em></pre>
+    <div class="strategy">
+      <h5>Why this matters</h5>
+      <ul>
+        <li>The comment "we'll send it to a real database in Part 2" <strong>plants a hook</strong> for the next session.</li>
+        <li>"Append, do not overwrite" — protects everything we've built in script.js so far.</li>
+        <li>Focus states explicitly requested — accessibility & polish in one move.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 18: QA3 -->
+<section class="slide"><div class="qa"><div class="ring">?</div><h2 class="title" style="margin:0">Q&amp;A · Break 3</h2><p class="lead">All 4 pages built. Which visual do you most want to change?</p></div></section>
+
+<!-- 19: Module 11 tokens -->
+<section class="slide">
+  <div class="eyebrow">Module 11 · Global polish</div>
+  <h2 class="title">CSS variables = design tokens = senior thinking.</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">prompt 10 (excerpt)</span>:root {
+  --color-bg:        #ffffff;
+  --color-text:      #111827;
+  --color-muted:     #6b7280;
+  --color-primary:   #6366f1;
+  --color-primary-dark:#4338ca;
+  --color-accent:    #a78bfa;
+  --color-surface:   #f9fafb;
+}
+
+Refactor existing CSS to use these variables
+wherever those colours appear.
+
+Type scale: h1=48 · h2=32 · h3=22 · body=16 · small=14
+Line-height: 1.6 body · 1.2 headings
+html { scroll-behavior: smooth; }
+
+Fonts: Inter (UI) + Fraunces (headings) via Google Fonts.
+
+Explain why CSS variables make redesigns 10x faster.</pre>
+    <div class="strategy">
+      <h5>Cursor's superpower</h5>
+      <ul>
+        <li>A sweeping multi-file refactor a beginner could never do by hand.</li>
+        <li>Demand the "why" → a 2-line lesson on design systems.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 20: Responsive -->
+<section class="slide">
+  <div class="eyebrow">Module 12 · Mobile-first</div>
+  <h2 class="title">Hamburger, stack, shrink.</h2>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card"><span class="icon">📱</span><h4>&lt; 768px</h4><p>Nav → ☰ hamburger. Multi-column grids stack to one column.</p></div>
+    <div class="card"><span class="icon">📲</span><h4>&lt; 480px</h4><p>h1 → 32px. Section padding 96 → 56px.</p></div>
+    <div class="card"><span class="icon">🧪</span><h4>Test it</h4><p>Right-click → Inspect → device toolbar → iPhone 14 Pro / iPad Mini.</p></div>
+  </div>
+  <pre class="code" style="margin-top:22px"><span class="tag">prompt 11 (key line)</span>The hamburger toggle must work via vanilla JavaScript
+in script.js — <strong>append, do not overwrite</strong>.
+
+Add /* === RESPONSIVE === */ at the bottom of styles.css.
+After changes, give me a 3-step manual test checklist
+I can run in Chrome DevTools.</pre>
+</section>
+
+<!-- 21: QA4 -->
+<section class="slide"><div class="qa"><div class="ring">?</div><h2 class="title" style="margin:0">Q&amp;A · Break 4</h2><p class="lead">Try the site on your phone. (Optional: <code>python3 -m http.server</code> + your laptop's IP.)</p></div></section>
+
+<!-- 22: Debugging -->
+<section class="slide">
+  <div class="eyebrow">Module 13 · Bonus</div>
+  <h2 class="title">Debugging with AI — symptom + suspect + scope.</h2>
+  <div class="two">
+    <pre class="code"><span class="tag">prompt 12 — debug</span>The layout of index.html is broken — the footer is
+overlapping the hero. I have not changed any CSS
+recently, only HTML. Please:
+
+1. Read index.html carefully.
+2. Find the structural mistake.
+3. <strong>Fix only that mistake</strong> — do not refactor.
+4. Tell me what was wrong and how I could have
+   spotted it myself (DevTools, linter, etc.).</pre>
+    <div class="strategy">
+      <h5>The bug-report pattern</h5>
+      <ul>
+        <li><strong>Symptom</strong> — what's visibly wrong.</li>
+        <li><strong>Suspect</strong> — what you recently changed.</li>
+        <li><strong>Scope</strong> — fix only this.</li>
+        <li><strong>Self-improvement</strong> — "how could I have spotted it?"</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 23: Checklist -->
+<section class="slide">
+  <div class="eyebrow">Final lap</div>
+  <h2 class="title">What you now own.</h2>
+  <ul class="bullets" style="margin-top:18px;font-size:18px">
+    <li>4 pages · 1 stylesheet · 1 script — clean architecture.</li>
+    <li>Sticky nav with active states across every page.</li>
+    <li>Hero, Skills, About, Projects, Contact, Footer.</li>
+    <li>Mobile responsive with animated hamburger menu.</li>
+    <li>Design tokens via CSS variables + Google Fonts + smooth scroll.</li>
+    <li>A contact form that <em>looks</em> real but doesn't <em>save</em> anything <strong>yet</strong>.</li>
+  </ul>
+</section>
+
+<!-- 24: Cliffhanger -->
+<section class="slide divider">
+  <div>
+    <div class="kicker">The cliffhanger</div>
+    <h1 class="big" style="font-size:clamp(48px,7vw,100px)">Your form<br/>lies to its users.</h1>
+    <p class="lead" style="margin-top:22px;max-width:900px">It says <em>"message sent"</em> — but the message goes nowhere. In <strong>Part 2</strong> we fix that: real cloud database, real admin dashboard, real version control, deployed to a live URL you can share on LinkedIn tonight.</p>
+  </div>
+</section>
+
+<!-- 25: QA5 -->
+<section class="slide"><div class="qa"><div class="ring">?</div><h2 class="title" style="margin:0">Q&amp;A · Final</h2><p class="lead">Open floor. Take your time — we are not rushed.</p></div></section>
+
+<!-- 26: 5 Rules restated -->
+<section class="slide">
+  <div class="eyebrow">Take-home card</div>
+  <h2 class="title">The five rules, restated.</h2>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><h4>1 · Numbers beat adjectives.</h4></div>
+    <div class="card"><h4>2 · Persona before prompt.</h4></div>
+    <div class="card"><h4>3 · One big prompt &gt; five small ones.</h4></div>
+    <div class="card"><h4>4 · Iterate with anchor + delta.</h4></div>
+    <div class="card" style="grid-column:span 2"><h4>5 · Always demand the "why".</h4><p>Every prompt becomes a lesson. That's how you stop copying and start <em>thinking</em>.</p></div>
+  </div>
+  <footer class="note">End of Part 1 · See you in Part 2 — bring the same folder, delete nothing.</footer>
+</section>
+
+<!-- 27: Feedback -->
+<section class="slide">
+  <div class="eyebrow">Before you go</div>
+  <h2 class="title">Your honest rating — <span style="background:linear-gradient(135deg,#a78bfa,#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent">1 to 5</span>.</h2>
+  <p class="lead">A Zoom poll is now live. Please take 10 seconds to rate this session — it shapes how Part 2 is taught and helps us improve every future cohort.</p>
+  <div class="grid g4" style="margin-top:32px">
+    <div class="card" style="text-align:center"><div style="font-family:Fraunces;font-size:56px;font-weight:800;color:#f472b6">1</div><p style="margin-top:6px">Needs work</p></div>
+    <div class="card" style="text-align:center"><div style="font-family:Fraunces;font-size:56px;font-weight:800;color:#a78bfa">2</div><p style="margin-top:6px">Okay</p></div>
+    <div class="card" style="text-align:center"><div style="font-family:Fraunces;font-size:56px;font-weight:800;color:#a78bfa">3</div><p style="margin-top:6px">Good</p></div>
+    <div class="card" style="text-align:center;border-color:#a78bfa"><div style="font-family:Fraunces;font-size:56px;font-weight:800;color:#34d399">4</div><p style="margin-top:6px">Great</p></div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr;margin-top:18px;max-width:280px;margin-left:auto;margin-right:auto">
+    <div class="card" style="text-align:center;border-color:#34d399;background:linear-gradient(135deg,rgba(52,211,153,.12),rgba(167,139,250,.08))"><div style="font-family:Fraunces;font-size:56px;font-weight:800;color:#34d399">5</div><p style="margin-top:6px">Loved it — bring on Part 2 🚀</p></div>
+  </div>
+  <p class="small" style="text-align:center;margin-top:22px">Anything specific? Drop a comment in the poll or the chat — every word is read.</p>
+</section>
+
+<!-- 28: CTA / Follow -->
+<section class="slide">
+  <div class="eyebrow">Stay in the loop</div>
+  <h2 class="title">If this clicked, the <em style="font-family:Fraunces;font-weight:600;background:linear-gradient(135deg,#a78bfa,#f472b6);-webkit-background-clip:text;background-clip:text;color:transparent">next ones</em> will click harder.</h2>
+  <div class="two" style="margin-top:24px;align-items:center">
+    <div>
+      <p class="body">I post every week on what's actually working in AI — agents, Copilot, LLMs, prompt patterns, MCP, system design, and live build-alongs like today's.</p>
+      <ul class="bullets" style="margin-top:20px">
+        <li>Follow on LinkedIn for daily AI learnings & visual breakdowns.</li>
+        <li>DM me your Part 1 site — I review and reply to every one.</li>
+        <li>Email for 1:1 mentorship, team training, or collaboration.</li>
+      </ul>
+      <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px">
+        <a href="https://www.linkedin.com/in/pulkit-walia/" style="display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:linear-gradient(135deg,#a78bfa,#6366f1);color:#fff;text-decoration:none;font-weight:700;font-size:15px;width:fit-content">
+          🔗 linkedin.com/in/pulkit-walia
+        </a>
+        <a href="mailto:pulkit.walia@gmail.com" style="display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:transparent;color:#fff;border:1px solid var(--line);text-decoration:none;font-weight:600;font-size:15px;width:fit-content">
+          ✉️ pulkit.walia@gmail.com
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(244,114,182,.08));border-color:rgba(167,139,250,.35);padding:32px">
+        <div class="kicker" style="color:#a78bfa">What I write about</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px">
+          <span class="pill">AI Agents</span>
+          <span class="pill">Agentic AI</span>
+          <span class="pill">LLMs</span>
+          <span class="pill">RAG</span>
+          <span class="pill">MCP Servers</span>
+          <span class="pill">GitHub Copilot</span>
+          <span class="pill">Cursor</span>
+          <span class="pill">Prompt Engineering</span>
+          <span class="pill">System Design</span>
+          <span class="pill">DevOps</span>
+          <span class="pill">Kubernetes</span>
+          <span class="pill">Azure</span>
+          <span class="pill">AWS</span>
+        </div>
+        <p class="small" style="margin-top:20px;font-style:italic;color:#cfd0e0">"Complex AI &amp; systems — visualised and explained in plain English."</p>
+      </div>
+      <p class="small" style="text-align:center;margin-top:18px;letter-spacing:.08em">SEE YOU IN PART 2 · BACKEND · DATABASE · DEPLOY 🚀</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const total=slides.length;
+let idx=0;
+const elCur=document.getElementById('cur');
+const elTot=document.getElementById('total');
+const prog=document.getElementById('progress');
+elTot.textContent=total;
+function show(i){
+  slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+  elCur.textContent=i+1;
+  prog.style.width=((i+1)/total*100)+'%';
+}
+function next(){idx=Math.min(idx+1,total-1);show(idx)}
+function prev(){idx=Math.max(idx-1,0);show(idx)}
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();next()}
+  if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();prev()}
+  if(e.key==='Home'){idx=0;show(idx)}
+  if(e.key==='End'){idx=total-1;show(idx)}
+});
+show(0);
+</script>
+</body>
+</html>

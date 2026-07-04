@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Inbox | Aanya Sharma</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Main site navigation: stays fixed at the top while the user scrolls -->
+  <nav class="nav" aria-label="Main navigation">
+
+    <!-- Brand / logo area on the left -->
+    <a href="index.html" class="nav__brand">Aanya Sharma</a>
+
+    <div class="nav__actions">
+      <ul id="nav-menu" class="nav__links">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li><a href="admin.html" class="nav__link active">Admin</a></li>
+      </ul>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+      <button
+        type="button"
+        class="nav__toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="nav__toggle-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+  </nav>
+
+  <header class="admin-header">
+    <h1 class="admin-header__title">Inbox</h1>
+    <p class="admin-header__subtitle">All contact-form messages, newest first.</p>
+  </header>
+
+  <section class="admin-main">
+    <div class="admin-toolbar">
+      <p id="inbox-count" class="admin-counter" aria-live="polite">📬 0 messages</p>
+
+      <label class="admin-filter">
+        <input type="checkbox" id="unread-only-toggle" class="admin-filter__input">
+        <span class="admin-filter__switch" aria-hidden="true"></span>
+        <span class="admin-filter__label">Unread only</span>
+      </label>
+    </div>
+
+    <div id="inbox-grid" class="inbox-grid" aria-live="polite"></div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <p class="footer__brand">Aanya Sharma</p>
+        <p class="footer__tagline">Designing calm products for noisy industries.</p>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Quick links</h2>
+        <ul class="footer__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h2 class="footer__heading">Social</h2>
+        <ul class="footer__social">
+          <li><a href="https://linkedin.com" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span aria-hidden="true">💼</span></a></li>
+          <li><a href="https://dribbble.com" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><span aria-hidden="true">🎨</span></a></li>
+          <li><a href="https://twitter.com" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span aria-hidden="true">🐦</span></a></li>
+          <li><a href="mailto:hello@aanyasharma.design" class="social-btn" aria-label="Email"><span aria-hidden="true">✉️</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copyright">© 2026 Aanya Sharma — Built with curiosity and Cursor. <span class="footer__heart" aria-hidden="true">♥</span></p>
+    </div>
+  </footer>
+
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
