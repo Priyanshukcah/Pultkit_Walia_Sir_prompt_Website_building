@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aanya Sharma — Senior UX Designer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <!-- Navigation bar: sticky header that stays at the top while you scroll -->
+  <nav class="nav">
+    <!-- Brand: your name or logo; usually links back to the home page -->
+    <a href="index.html" class="nav-brand">Aanya Sharma</a>
+    <div class="nav-actions">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <!-- Nav links: main menu items, aligned to the right and evenly spaced -->
+      <ul class="nav-links" id="nav-menu">
+        <!-- Home: main landing page (add class="active" on the page you are viewing) -->
+        <li><a href="index.html" class="active">Home</a></li>
+        <!-- About: your bio or background -->
+        <li><a href="about.html">About</a></li>
+        <!-- Projects: portfolio or work samples -->
+        <li><a href="projects.html">Projects</a></li>
+        <!-- Contact: how visitors can reach you -->
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <!-- Hero: first big section visitors see — headline and main call-to-action -->
+  <section class="hero">
+    <p class="hero-eyebrow">Portfolio 2026</p>
+    <h1 class="hero-title">Design products people actually enjoy using</h1>
+    <p class="hero-sub">Senior UX designer with five years in tech, ed tech, and health care</p>
+    <a href="projects.html" class="hero-cta btn-shine">See my work</a>
+    <div class="hero-scroll" aria-hidden="true"><span class="hero-scroll-dot"></span></div>
+  </section>
+
+  <!-- Skills: grid of six core capabilities -->
+  <section class="skills">
+    <h2 class="skills-heading">What I Do</h2>
+    <p class="skills-tagline">A toolkit shaped by 5 years of shipping real products</p>
+
+    <div class="skills-grid">
+      <!-- Card: User research -->
+      <article class="skill-card reveal">
+        <span class="skill-icon" aria-hidden="true">🔍</span>
+        <h3 class="skill-name">User research</h3>
+        <p class="skill-desc">interviews, surveys, and usability test and uncover real user needs</p>
+      </article>
+
+      <!-- Card: UI design -->
+      <article class="skill-card reveal">
+        <span class="skill-icon" aria-hidden="true">🎨</span>
+        <h3 class="skill-name">UI design</h3>
+        <p class="skill-desc">pixel-perfect interfaces built in Figma with reusable design systems</p>
+      </article>
+
+      <!-- Card: Information architecture -->
+      <article class="skill-card reveal">
+        <span class="skill-icon" aria-hidden="true">🗂️</span>
+        <h3 class="skill-name">Information architecture</h3>
+        <p class="skill-desc">clear site maps and flows that make complex product feel simple</p>
+      </article>
+
+      <!-- Card: Prototyping -->
+      <article class="skill-card reveal">
+        <span class="skill-icon" aria-hidden="true">🖱️</span>
+        <h3 class="skill-name">Prototyping</h3>
+        <p class="skill-desc">high-fidelity clickable prototypes that validate ideas before a single line of code</p>
+      </article>
+
+      <!-- Card: Accessibility -->
+      <article class="skill-card reveal">
+        <span class="skill-icon" aria-hidden="true">♿</span>
+        <h3 class="skill-name">Accessibility</h3>
+        <p class="skill-desc">WCAG compliant. Designers that work for everyone on every device</p>
+      </article>
+
+      <!-- Card: Designer systems -->
+      <article class="skill-card reveal">
+        <span class="skill-icon" aria-hidden="true">📐</span>
+        <h3 class="skill-name">Designer systems</h3>
+        <p class="skill-desc">scalable component libraries that keep teams shipping fast and consistently</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer: identical on index, about, projects, and contact -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-accent-line" aria-hidden="true"></div>
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <p class="footer-brand">ANIA</p>
+          <p class="footer-tagline">Designing calm products for noisy industries</p>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Quick links</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Social</h2>
+          <ul class="footer-social social-icon-row">
+            <li><a href="https://linkedin.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">💼</a></li>
+            <li><a href="https://dribbble.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">🎨</a></li>
+            <li><a href="https://twitter.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter">🐦</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ANIA · Built with curiosity and <span class="footer-heart" aria-hidden="true">♥</span> Cursor</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
