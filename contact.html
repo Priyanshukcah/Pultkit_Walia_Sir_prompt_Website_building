@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Aanya Sharma — Senior UX Designer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">Aanya Sharma</a>
+    <div class="nav-actions">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <header class="contact-header">
+    <h1 class="contact-title">Let's build something good</h1>
+    <p class="contact-intro">Project inquiries, mentorship, or just a chat. I reply within 24 hours.</p>
+  </header>
+
+  <section class="contact-main">
+    <div class="contact-grid">
+      <aside class="contact-card reveal">
+        <h2 class="contact-card-heading">Get in touch</h2>
+        <p class="contact-detail">
+          <strong>Email</strong><br>
+          <a href="mailto:hello@anysharma.com">hello@anysharma.com</a>
+        </p>
+        <p class="contact-detail">
+          <strong>Location</strong><br>
+          Bangalore, India
+        </p>
+        <ul class="contact-social social-icon-row">
+          <li><a href="https://linkedin.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">💼</a></li>
+          <li><a href="https://dribbble.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">🎨</a></li>
+          <li><a href="https://twitter.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter">🐦</a></li>
+        </ul>
+      </aside>
+
+      <div class="contact-form-wrap reveal">
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="form-group float-label">
+            <input type="tel" id="phone" name="phone" placeholder=" " required>
+            <label for="phone">Phone</label>
+          </div>
+
+          <div class="form-group float-label">
+            <input type="text" id="name" name="name" placeholder=" " required>
+            <label for="name">Name</label>
+          </div>
+
+          <div class="form-group float-label">
+            <input type="email" id="email" name="email" placeholder=" " required>
+            <label for="email">Email address</label>
+          </div>
+
+          <div class="form-group float-label float-label-select">
+            <select id="subject" name="subject" required>
+              <option value="" disabled selected>Select a subject</option>
+              <option value="Project inquiry">Project inquiry</option>
+              <option value="Collaboration">Collaboration</option>
+              <option value="Mentorship">Mentorship</option>
+              <option value="Speaking">Speaking</option>
+              <option value="Other">Other</option>
+            </select>
+            <label for="subject">Subject</label>
+          </div>
+
+          <div class="form-group float-label">
+            <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+            <label for="message">Message</label>
+          </div>
+
+          <button type="submit" class="contact-submit btn-shine">Send message</button>
+        </form>
+
+        <p id="contact-success" class="contact-success" hidden>
+          Thanks, your message was sent. I will reply within 24 hours.
+        </p>
+        <p id="contact-error" class="contact-error" hidden>
+          Something went wrong. Please try again.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-accent-line" aria-hidden="true"></div>
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <p class="footer-brand">ANIA</p>
+          <p class="footer-tagline">Designing calm products for noisy industries</p>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Quick links</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Social</h2>
+          <ul class="footer-social social-icon-row">
+            <li><a href="https://linkedin.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">💼</a></li>
+            <li><a href="https://dribbble.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">🎨</a></li>
+            <li><a href="https://twitter.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter">🐦</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ANIA · Built with curiosity and <span class="footer-heart" aria-hidden="true">♥</span> Cursor</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

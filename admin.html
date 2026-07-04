@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbox | Aanya Sharma — Senior UX Designer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <!-- Navigation bar: sticky header that stays at the top while you scroll -->
+  <nav class="nav">
+    <!-- Brand: your name or logo; usually links back to the home page -->
+    <a href="index.html" class="nav-brand">Aanya Sharma</a>
+    <div class="nav-actions">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <!-- Nav links: main menu items, aligned to the right and evenly spaced -->
+      <ul class="nav-links" id="nav-menu">
+        <!-- Home: main landing page (add class="active" on the page you are viewing) -->
+        <li><a href="index.html">Home</a></li>
+        <!-- About: your bio or background -->
+        <li><a href="about.html">About</a></li>
+        <!-- Projects: portfolio or work samples -->
+        <li><a href="projects.html">Projects</a></li>
+        <!-- Contact: how visitors can reach you -->
+        <li><a href="contact.html">Contact</a></li>
+        <!-- Admin: inbox dashboard for contact-form messages -->
+        <li><a href="admin.html" class="active">Admin</a></li>
+      </ul>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <header class="admin-header">
+    <h1 class="admin-title">Inbox</h1>
+    <p class="admin-subtitle">All contact-form messages, newest first.</p>
+  </header>
+
+  <div class="admin-toolbar">
+    <p id="inbox-count" class="inbox-count">📬 0 messages</p>
+    <label class="inbox-filter-toggle">
+      <input type="checkbox" id="inbox-unread-only">
+      <span class="inbox-filter-slider" aria-hidden="true"></span>
+      <span class="inbox-filter-label">Unread only</span>
+    </label>
+  </div>
+
+  <section class="admin-main">
+    <div id="inbox-grid" class="inbox-grid" aria-live="polite"></div>
+    <p id="inbox-empty" class="inbox-empty" hidden>No messages yet.</p>
+    <p id="inbox-error" class="inbox-error" hidden>Could not load messages. Check the console and try again.</p>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-accent-line" aria-hidden="true"></div>
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <p class="footer-brand">ANIA</p>
+          <p class="footer-tagline">Designing calm products for noisy industries</p>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Quick links</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Social</h2>
+          <ul class="footer-social social-icon-row">
+            <li><a href="https://linkedin.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">💼</a></li>
+            <li><a href="https://dribbble.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">🎨</a></li>
+            <li><a href="https://twitter.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter">🐦</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ANIA · Built with curiosity and <span class="footer-heart" aria-hidden="true">♥</span> Cursor</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

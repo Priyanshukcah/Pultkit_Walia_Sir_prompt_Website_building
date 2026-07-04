@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Aanya Sharma — Senior UX Designer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <!-- Navigation bar: sticky header that stays at the top while you scroll -->
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">Aanya Sharma</a>
+    <div class="nav-actions">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <header class="about-header">
+    <div class="about-header-blob" aria-hidden="true"></div>
+    <h1 class="about-title">About ANIA</h1>
+    <p class="about-subtitle">Designer Researcher Coffee-Driven Optimist</p>
+  </header>
+
+  <section class="about-stats reveal">
+    <div class="about-stats-inner">
+      <div class="stat-item">
+        <p class="stat-value"><span class="stat-num" data-target="5">0</span>+</p>
+        <p class="stat-label">years experience</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-value"><span class="stat-num" data-target="30">0</span>+</p>
+        <p class="stat-label">shipped projects</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-value"><span class="stat-num" data-target="12">0</span></p>
+        <p class="stat-label">awards</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-intro">
+    <div class="about-intro-grid">
+      <div class="about-photo">
+        <img
+          src="https://via.placeholder.com/400x400/4F46E5?text=ANIA"
+          alt="Portrait placeholder for ANIA"
+          width="400"
+          height="400"
+        >
+      </div>
+      <div class="about-bio">
+        <p>I design products at the intersection of business goals and human emotions. My happy place is the ones where a measurable metric moves—conversion, time on task, and more users—and semi-unsolicited thank-you messages start showing up.</p>
+        <p>Before design I trained as a psychology major, which still shows up in how I run research. I believe the best interviews feel like good conversations not interrogations.</p>
+        <p>When I am not in Figma, you will find me sketching, in cafes, running ultra marathons very slowly, or trying and failing to keep my plants alive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-timeline-section">
+    <h2 class="about-timeline-heading">Career Timeline</h2>
+    <div class="timeline">
+      <article class="timeline-entry reveal" style="--reveal-delay: 50ms">
+        <div class="timeline-left">
+          <span class="timeline-year">2024</span>
+          <h3 class="timeline-role">Senior UI Designer</h3>
+          <p class="timeline-company">Resorpe</p>
+        </div>
+        <div class="timeline-right">
+          <p>Leading checkout redesign for 8 million users.</p>
+        </div>
+      </article>
+
+      <article class="timeline-entry reveal" style="--reveal-delay: 150ms">
+        <div class="timeline-left">
+          <span class="timeline-year">2022</span>
+          <h3 class="timeline-role">UX Designer</h3>
+          <p class="timeline-company">Juiceland</p>
+        </div>
+        <div class="timeline-right">
+          <p>0-to-1 product design practice for K-12 learners.</p>
+        </div>
+      </article>
+
+      <article class="timeline-entry reveal" style="--reveal-delay: 250ms">
+        <div class="timeline-left">
+          <span class="timeline-year">—</span>
+          <h3 class="timeline-role">Product Designer</h3>
+          <p class="timeline-company">Patient Chat MVP</p>
+        </div>
+        <div class="timeline-right">
+          <p>Zero-to-one design from MVP concept through launch.</p>
+        </div>
+      </article>
+
+      <article class="timeline-entry reveal" style="--reveal-delay: 350ms">
+        <div class="timeline-left">
+          <span class="timeline-year">—</span>
+          <h3 class="timeline-role">UX Designer</h3>
+          <p class="timeline-company">Resorpe</p>
+        </div>
+        <div class="timeline-right">
+          <p>Restaurant voting flow and checkout experience design.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-accent-line" aria-hidden="true"></div>
+      <div class="footer-grid">
+        <div class="footer-col footer-brand-col">
+          <p class="footer-brand">ANIA</p>
+          <p class="footer-tagline">Designing calm products for noisy industries</p>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Quick links</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-heading">Social</h2>
+          <ul class="footer-social social-icon-row">
+            <li><a href="https://linkedin.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">💼</a></li>
+            <li><a href="https://dribbble.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble">🎨</a></li>
+            <li><a href="https://twitter.com" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter">🐦</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 ANIA · Built with curiosity and <span class="footer-heart" aria-hidden="true">♥</span> Cursor</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
